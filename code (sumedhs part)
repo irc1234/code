@@ -1,0 +1,42 @@
+ if (swbSwitch < 1500) {
+//swapnils part of code
+ 
+ } else {
+
+// servow with right joystick
+
+  bool servo1Moving = false;
+  bool servo2Moving = false;
+
+  if (joystickX > 1800) {
+    // servo x right
+    servo1.write(servo1.read() + 1);
+    servo1Moving = true;
+  } else if (joystickX < 1200) {
+    // servo x left
+    servo1.write(servo1.read() - 1);
+    servo1Moving = true;
+  } else {
+    servo1Moving = false;
+  }
+
+  if (joystickY > 1800) {
+    // Move servo y up
+    servo2.write(servo2.read() + 1);
+    servo2Moving = true;
+  } else if (joystickY < 1200) {
+    // Move servo y down
+    servo2.write(servo2.read() - 1);
+    servo2Moving = true;
+  } else {
+    servo2Moving = false;
+  }
+
+  if (servo1Moving) {
+    servo1.write(servo1.read() + (joystickX > 1500 ? 1 : -1));
+  }
+
+  if (servo2Moving) {
+    servo2.write(servo2.read() + (joystickY > 1500 ? 1 : -1));
+  }
+}
